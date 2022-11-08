@@ -4,9 +4,10 @@ import styles from './MesOrder.module.scss';
 import CardOrder from '../../../components/Layout/components/Order/CardOrder/CardOrder';
 //input localhost file
 import axios from 'axios';
-import { apiUrl, cookieValue } from '../../../contexts/contexts';
+import { apiUrl, cookieValue, socket } from '../../../contexts/contexts';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import notification from '../../../audio/notification.mp3';
 //
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,21 @@ const MesOrder = () => {
   const [dataSector, setdataSector] = useState([]);
   //data fields
   const [fieldSector, setfieldSector] = useState('0');
+  //reload data
+  const [reload, setreload] = useState(true);
+  //=================================
+  //socket io
+  //lắng nghe sự kiên
+  useEffect(() => {
+    socket.on('statusOrder', (data) => {
+      if (data.status === 'NewOrder') {
+        setreload(!reload);
+        new Audio(notification).play();
+      } else {
+        setreload(!reload);
+      }
+    });
+  }, [reload]);
   //=================================
   //lấy dữ liệu
   useEffect(() => {
@@ -32,7 +48,7 @@ const MesOrder = () => {
         // console.log(res);
       })
       .then((error) => {});
-  }, []);
+  }, [reload]);
 
   useEffect(() => {
     //lấy dữ liệu tất cả bàn
@@ -64,7 +80,7 @@ const MesOrder = () => {
         })
         .then((error) => {});
     }
-  }, [fieldSector]);
+  }, [fieldSector, reload]);
   //====================================
   //chuyeenr trang
   const NextPageOrderFood = (id, IDnumber) => {

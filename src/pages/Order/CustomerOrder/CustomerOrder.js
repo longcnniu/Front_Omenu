@@ -5,9 +5,10 @@ import CardOrder from '../../../components/Layout/components/Order/CardOrder/Car
 //
 //input localhost file
 import axios from 'axios';
-import { apiUrl, cookieValue } from '../../../contexts/contexts';
+import { apiUrl, cookieValue, socket } from '../../../contexts/contexts';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import notification from '../../../audio/notification.mp3';
 //
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,21 @@ const CustomerOrder = () => {
   const [dataSector, setdataSector] = useState([]);
   //data fields
   const [fieldSector, setfieldSector] = useState('0');
+  //reload data
+  const [reload, setreload] = useState(true);
+  //=================================
+  //socket io
+  //lắng nghe sự kiên
+  useEffect(() => {
+    socket.on('statusOrder', (data) => {
+      if (data.status === 'NewOrder') {
+        setreload(!reload);
+        new Audio(notification).play();
+      } else {
+        setreload(!reload);
+      }
+    });
+  }, [reload]);
   //=================================
   //lấy dữ liệu
   useEffect(() => {
@@ -64,7 +80,7 @@ const CustomerOrder = () => {
         })
         .then((error) => {});
     }
-  }, [fieldSector]);
+  }, [fieldSector, reload]);
   //====================================
   //chuyển trang đến chi tiết order
   const NextPageDetailOrder = (id) => {

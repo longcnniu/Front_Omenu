@@ -1,3 +1,6 @@
+import io from 'socket.io-client';
+export const socket = io.connect('http://192.168.1.15:5000/');
+
 export const apiUrl =
   process.env.NODE_ENV !== 'production' ? 'http://192.168.1.15:5000/api' : 'https://salty-brook-05753.herokuapp.com';
 

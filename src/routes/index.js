@@ -21,6 +21,7 @@ import ChangeTable from '../pages/Order/DetailOrder/ChangeOrder/ChangeOrder';
 import ClientMenu from '../pages/ClientMenu/ClientMenu';
 import ClientCart from '../pages/ClientMenu/ClientCart/ClientCart';
 import CreateQR from '../pages/Table/CreateQR/CreateQR';
+import OrderKitchen from '../pages/OrderKitchen/OrderKitchen';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -51,6 +52,8 @@ const publicRoutes = [
   //==========================menu client
   { path: '/client-menu/:id', component: ClientMenu, layout: null },
   { path: '/client-cart/:id', component: ClientCart, layout: null },
+  //==========================Order kitchen
+  { path: '/order-for-kitchen', component: OrderKitchen },
 ];
 
 export { publicRoutes };

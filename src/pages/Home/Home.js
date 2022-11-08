@@ -15,11 +15,7 @@ const Home = () => {
         <CardView name="QL Bàn" icon={TbArmchair} url="table" />
         <CardView name="QL Order" icon={BiDish} url="order" />
         <CardView name="QL Thực đơn" icon={BiFoodMenu} url="menu" />
-        <CardView name="Order cho khách" icon={BiFoodMenu} url="menu" />
-        <CardView name="Hỗ trợ" icon={BiFoodMenu} url="menu" />
-        <CardView name="QL chế biến" icon={BiFoodMenu} url="menu" />
-        <CardView name="QL nhân viên" icon={BiFoodMenu} url="menu" />
-        <CardView name="Thống kê" icon={BiFoodMenu} url="menu" />
+        <CardView name="QL đơn cho bếp" icon={BiFoodMenu} url="order-for-kitchen" />
       </div>
     </div>
   );

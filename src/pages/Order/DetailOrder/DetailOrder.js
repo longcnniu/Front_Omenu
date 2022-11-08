@@ -88,7 +88,7 @@ const DetailOrder = () => {
     axios
       .post(
         apiUrl + '/v1/delete-order/' + AllDataBill._id,
-        { idTable: AllDataBill.Table[0]._id },
+        { idTable: AllDataBill.Table[0]._id, codeBill: AllDataBill.codeBill },
         {
           headers: {
             token: cookieValue(),
@@ -141,7 +141,7 @@ const DetailOrder = () => {
       {dataCart !== null ? (
         <>
           <div className={cx('container-infor')}>
-            <p>Thời gian: {moment(AllDataBill.createdAt).format('HH:MM DD/MM/YYYY')}</p>
+            <p>Thời gian: {moment(AllDataBill.createdAt).format('hh:mm DD/MM/YYYY')}</p>
             <p>Mã hóa đơn: {AllDataBill.codeBill}</p>
           </div>
           <table className={cx('table')}>
