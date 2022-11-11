@@ -22,6 +22,9 @@ import ClientMenu from '../pages/ClientMenu/ClientMenu';
 import ClientCart from '../pages/ClientMenu/ClientCart/ClientCart';
 import CreateQR from '../pages/Table/CreateQR/CreateQR';
 import OrderKitchen from '../pages/OrderKitchen/OrderKitchen';
+import DetailNew from '../pages/OrderKitchen/DetailNew/DetailNew';
+import DetailComplete from '../pages/OrderKitchen/DetailComplete/DetailComplete';
+import Accomplished from '../pages/OrderKitchen/Accomplished/Accomplished';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -54,6 +57,9 @@ const publicRoutes = [
   { path: '/client-cart/:id', component: ClientCart, layout: null },
   //==========================Order kitchen
   { path: '/order-for-kitchen', component: OrderKitchen },
+  { path: '/order-for-kitchen-detaild/:id/:id', component: DetailNew },
+  { path: '/order-for-kitchen-detailc/:id/:id', component: DetailComplete },
+  { path: '/order-for-kitchen-accomplished/:id/:id', component: Accomplished },
 ];
 
 export { publicRoutes };

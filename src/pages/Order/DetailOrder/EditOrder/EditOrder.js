@@ -25,11 +25,19 @@ const EditOrder = () => {
   //=====================================
   useEffect(() => {
     const url = window.location.href.split('/');
-    const test = (a, b) => {
+    const test = (am, bm) => {
       setdataCart([]);
-      for (let i = 0; i < a.length; i++) {
-        setdataCart((oldArray) => [...oldArray, { ...a[i], count: b[i].quantity }]);
-      }
+      let result = am.concat(bm).reduce((a, c) => {
+        let obj = a.find((i) => i.IDnumber === c.IDFood);
+        if (obj) {
+          obj.count += c.quantity;
+        } else {
+          a.push(c);
+        }
+        return a;
+      }, []);
+      // console.log(result);
+      setdataCart((d) => d.concat(result));
     };
     axios
       .get(apiUrl + '/v1/get-detail-order-byid/' + url[4], {

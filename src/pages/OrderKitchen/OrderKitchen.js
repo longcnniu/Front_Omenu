@@ -49,11 +49,11 @@ const OrderKitchen = () => {
         {/* ==================== */}
         {ChangePage === 3 ? (
           <div className={cx('convert-3', 'activated')} onClick={changePage(3)}>
-            <h3 className={cx('text')}>Lịch sử</h3>
+            <h3 className={cx('text')}>Hoàn thành</h3>
           </div>
         ) : (
           <div className={cx('convert-3')} onClick={changePage(3)}>
-            <h3 className={cx('text')}>Lịch sử</h3>
+            <h3 className={cx('text')}>Hoàn thành</h3>
           </div>
         )}
       </div>

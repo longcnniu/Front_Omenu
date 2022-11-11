@@ -10,6 +10,7 @@ import CardOrder from '../../../components/Layout/components/OrderKitchen/CardOr
 const cx = classNames.bind(styles);
 
 const NewOrder = () => {
+  const navigate = useNavigate();
   const [DataOrder, setDataOrder] = useState([]);
   //reload
   const [reload, setreload] = useState(true);
@@ -36,16 +37,26 @@ const NewOrder = () => {
       });
   }, [reload]);
   //==========================================
+  //chuyen trang
+  const NextPage = (codeBill, id) => {
+    navigate('/order-for-kitchen-detaild/' + codeBill + '/' + id);
+  };
+  //==========================================
   //rander ui
   const listOrder = DataOrder.map((data) => {
     return (
-      <div key={data._id}>
+      <div
+        key={data._id}
+        onClick={() => {
+          NextPage(data.codeBill, data._id);
+        }}
+      >
         <CardOrder billCode={data.codeBill} Time={data.createdAt} />
       </div>
     );
   });
   //==========================================
-  return <div className={cx('container1')}>{listOrder}</div>;
+  return <div className={cx('container1')}>{listOrder.length > 0 ? listOrder : <h3>Đang chờ đơn</h3>}</div>;
 };
 
 export default NewOrder;
