@@ -25,6 +25,9 @@ import OrderKitchen from '../pages/OrderKitchen/OrderKitchen';
 import DetailNew from '../pages/OrderKitchen/DetailNew/DetailNew';
 import DetailComplete from '../pages/OrderKitchen/DetailComplete/DetailComplete';
 import Accomplished from '../pages/OrderKitchen/Accomplished/Accomplished';
+import ServiceMain from '../pages/Service/ServiceMain';
+import DetailService from '../pages/Service/DetailService/DetailService';
+import DetailServed from '../pages/Service/DetailServed/DetailServed';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -60,6 +63,10 @@ const publicRoutes = [
   { path: '/order-for-kitchen-detaild/:id/:id', component: DetailNew },
   { path: '/order-for-kitchen-detailc/:id/:id', component: DetailComplete },
   { path: '/order-for-kitchen-accomplished/:id/:id', component: Accomplished },
+  //==========================Order Service
+  { path: '/order-for-service', component: ServiceMain },
+  { path: '/detail-waiting/:id/:id', component: DetailService },
+  { path: '/detail-serviced/:id/:id', component: DetailServed },
 ];
 
 export { publicRoutes };
