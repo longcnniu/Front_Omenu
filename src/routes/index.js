@@ -28,6 +28,8 @@ import Accomplished from '../pages/OrderKitchen/Accomplished/Accomplished';
 import ServiceMain from '../pages/Service/ServiceMain';
 import DetailService from '../pages/Service/DetailService/DetailService';
 import DetailServed from '../pages/Service/DetailServed/DetailServed';
+import ClientBill from '../pages/ClientMenu/ClientBill/ClientBill';
+import ClientBillStatus from '../pages/ClientMenu/ClientBillStatus/ClientBillStatus';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -58,6 +60,8 @@ const publicRoutes = [
   //==========================menu client
   { path: '/client-menu/:id', component: ClientMenu, layout: null },
   { path: '/client-cart/:id', component: ClientCart, layout: null },
+  { path: '/client-bill/:id/:id', component: ClientBill, layout: null },
+  { path: '/client-bill-status/:id/:id', component: ClientBillStatus, layout: null },
   //==========================Order kitchen
   { path: '/order-for-kitchen', component: OrderKitchen },
   { path: '/order-for-kitchen-detaild/:id/:id', component: DetailNew },

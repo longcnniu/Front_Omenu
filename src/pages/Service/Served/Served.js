@@ -17,7 +17,7 @@ const Served = () => {
   //==========================================
 
   useEffect(() => {
-    socket.on('statusOrderK', (data) => {
+    socket.on('OrderComplete', (data) => {
       setreload(!reload);
     });
   }, [reload]);
@@ -39,7 +39,7 @@ const Served = () => {
   //==========================================
   //chuyen trang
   const NextPage = (codeBill, id) => {
-    navigate('/detail-waiting/' + codeBill + '/' + id);
+    navigate('/detail-serviced/' + codeBill + '/' + id);
   };
   //==========================================
   //rander ui

@@ -19,11 +19,28 @@ const ClientMenu = () => {
   const [dataFoodNew, setdataFoodNew] = useState([]);
   const [dataFoodHot, setdataFoodHot] = useState([]);
   const [dataCategory, setdataCategory] = useState([]);
+  const [StatusTable, setStatusTable] = useState(false);
+  const [dataTable, setdataTable] = useState([]);
   //data fields
   const [fieldCategory, setfieldCategory] = useState('0');
   //=============================================
-  //lấy dữ liệu category
+  //lấy trạng thái bàn
   useEffect(() => {
+    const url = window.location.href.split('/');
+    axios
+      .get(apiUrl + '/v1/get-detail-table/' + url[4], {
+        headers: {
+          token: cookieValue(),
+        },
+      })
+      .then((res) => {
+        setStatusTable(res.data.data.StatusTable);
+        setdataTable(res.data.data);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+    //lấy dữ liệu category
     axios
       .get(apiUrl + '/v1/get-all-category', {
         headers: {
@@ -120,6 +137,19 @@ const ClientMenu = () => {
     const url = window.location.href.split('/');
     navigate('/client-cart/' + url[4]);
   };
+
+  //xem bill
+  const NextPageBill = () => {
+    const url = window.location.href.split('/');
+    navigate('/client-bill/' + url[4] + '/' + dataTable.IDnumber);
+  };
+
+  //xem  trạng thái đơn
+  const NextPageBillStatus = () => {
+    const url = window.location.href.split('/');
+    navigate('/client-bill-status/' + url[4] + '/' + dataTable.IDnumber);
+  };
+
   //==============================================
   //rander ra ui
   //món mới
@@ -178,23 +208,51 @@ const ClientMenu = () => {
     <>
       <Header />
       <div className={cx('wrapper')}>
-        <div className={cx('container-infor')}>
-          <label>Bộ lọc</label>
-          <select className={cx('select-filters-ch')} onChange={(e) => setfieldCategory(e.target.value)}>
-            <option value="0">Tất Cả</option>
-            {selectCategory}
-          </select>
-        </div>
-        {/* ====================== */}
-        <h3 className={cx('container-title')}>{fieldCategory === '0' && listFoodHot.length > 0 ? 'Món mới' : <></>}</h3>
-        <div className={cx('container1')}>{listFoodNew.length > 0 && fieldCategory === '0' ? listFoodNew : <></>}</div>
-        {/* //==================== */}
-        <h3 className={cx('container-title')}>{fieldCategory === '0' && listFoodHot.length > 0 ? 'Món Hot' : <></>}</h3>
-        <div className={cx('container1')}>{listFoodHot.length > 0 && fieldCategory === '0' ? listFoodHot : <></>}</div>
-        {/* //==================== */}
-        <h3 className={cx('container-title')}>{fieldCategory === '0' ? 'Tất cả món' : <></>}</h3>
-        <div className={cx('container1')}>{listFood.length > 0 ? listFood : 'Không có dữ liệu'}</div>
-        <button onClick={NextPageCart}>Giỏ hàng</button>
+        {StatusTable ? (
+          <div className={cx('container-main')}>
+            <div className={cx('container-tool')}>
+              <h1>Menu</h1>
+              <button className={cx('btn')}>Thêm món</button>
+              <button className={cx('btn')} onClick={NextPageBillStatus}>
+                Trạng thái đơn
+              </button>
+              <button className={cx('btn')}>Gọi nhân viên</button>
+              <button className={cx('btn')} onClick={NextPageBill}>
+                Xem bill
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className={cx('container-infor')}>
+              <label>Bộ lọc</label>
+              <select className={cx('select-filters-ch')} onChange={(e) => setfieldCategory(e.target.value)}>
+                <option value="0">Tất Cả</option>
+                {selectCategory}
+              </select>
+              <button onClick={NextPageCart} className={cx('btn')}>
+                Giỏ hàng
+              </button>
+            </div>
+            {/* ====================== */}
+            <h3 className={cx('container-title')}>
+              {fieldCategory === '0' && listFoodHot.length > 0 ? 'Món mới' : <></>}
+            </h3>
+            <div className={cx('container1')}>
+              {listFoodNew.length > 0 && fieldCategory === '0' ? listFoodNew : <></>}
+            </div>
+            {/* //==================== */}
+            <h3 className={cx('container-title')}>
+              {fieldCategory === '0' && listFoodHot.length > 0 ? 'Món Hot' : <></>}
+            </h3>
+            <div className={cx('container1')}>
+              {listFoodHot.length > 0 && fieldCategory === '0' ? listFoodHot : <></>}
+            </div>
+            {/* //==================== */}
+            <h3 className={cx('container-title')}>{fieldCategory === '0' ? 'Tất cả món' : <></>}</h3>
+            <div className={cx('container1')}>{listFood.length > 0 ? listFood : 'Không có dữ liệu'}</div>
+          </>
+        )}
       </div>
     </>
   );

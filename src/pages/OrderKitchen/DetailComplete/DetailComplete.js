@@ -57,8 +57,8 @@ const DetailComplete = () => {
     const url = window.location.href.split('/');
     axios
       .post(
-        apiUrl + '/v1/get-detail-order-by-codebill',
-        { codeBill: url[4] },
+        apiUrl + '/v1/get-detail-orderk-by-id',
+        { id: url[5] },
         {
           headers: {
             token: cookieValue(),

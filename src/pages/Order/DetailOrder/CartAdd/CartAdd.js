@@ -17,6 +17,7 @@ const CartAdd = () => {
   let dataOrderOld = [];
   let dataOrderGraft = [];
   let dataOrder = [];
+  let dataOrderk = [];
   // relaodtable
   const [reloadTable, setreloadTable] = useState(true);
   //
@@ -116,6 +117,37 @@ const CartAdd = () => {
   };
   // tạo đơn order
   const createOrder = () => {
+    //tạo đơn để cho nhà bếp
+    dataOrderk.length = 0;
+    for (let i = 0; i <= dataCart.length; i++) {
+      if (i < dataCart.length) {
+        dataOrderk.push({ IDFood: dataCart[i].IDnumber, quantity: dataCart[i].count });
+      } else if (i === dataCart.length) {
+        axios
+          .post(
+            apiUrl + '/v1/create-order-k',
+            {
+              IDAccountOrder: AllDataBill.IDAccountOrder,
+              NameAccountOrder: AllDataBill.NameAccountOrder,
+              codeBill: AllDataBill.codeBill,
+              OrderNumberIDFood: dataOrderk,
+              tableNumberID: AllDataBill.tableNumberID,
+              amount: cartPriceTotal,
+              status: AllDataBill.status,
+            },
+            {
+              headers: {
+                token: cookieValue(),
+              },
+            },
+          )
+          .then((res) => {})
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+    //cập nhật để thêm món ăn
     const pustdata = () => {
       for (let i = 0; i <= dataOrderGraft.length; i++) {
         if (i < dataOrderGraft.length) {
@@ -141,12 +173,12 @@ const CartAdd = () => {
               },
             )
             .then((res) => {
+              // console.log(res);
+              pupsuccess('Order thành công');
               deleteAll();
-              console.log(res);
-              // pupsuccess('Order thành công');
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }

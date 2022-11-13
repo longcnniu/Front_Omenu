@@ -17,7 +17,7 @@ const WaitingService = () => {
   //==========================================
 
   useEffect(() => {
-    socket.on('statusOrderK', (data) => {
+    socket.on('OrderComplete', (data) => {
       setreload(!reload);
     });
   }, [reload]);
