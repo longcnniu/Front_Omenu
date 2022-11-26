@@ -30,6 +30,8 @@ import DetailService from '../pages/Service/DetailService/DetailService';
 import DetailServed from '../pages/Service/DetailServed/DetailServed';
 import ClientBill from '../pages/ClientMenu/ClientBill/ClientBill';
 import ClientBillStatus from '../pages/ClientMenu/ClientBillStatus/ClientBillStatus';
+import AddOrderClient from '../pages/ClientMenu/AddOrderClient/AddOrderClient';
+import CartAddClient from '../pages/ClientMenu/CartAddClient/CartAddClient';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -62,6 +64,8 @@ const publicRoutes = [
   { path: '/client-cart/:id', component: ClientCart, layout: null },
   { path: '/client-bill/:id/:id', component: ClientBill, layout: null },
   { path: '/client-bill-status/:id/:id', component: ClientBillStatus, layout: null },
+  { path: '/client-add-food/:id/:id', component: AddOrderClient, layout: null },
+  { path: '/client-cart-add/:id/:id', component: CartAddClient, layout: null },
   //==========================Order kitchen
   { path: '/order-for-kitchen', component: OrderKitchen },
   { path: '/order-for-kitchen-detaild/:id/:id', component: DetailNew },

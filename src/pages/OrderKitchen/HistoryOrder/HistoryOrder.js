@@ -51,7 +51,7 @@ const HistoryOrder = () => {
           NextPage(data.codeBill, data._id);
         }}
       >
-        <CardOrder billCode={data.codeBill} Time={data.createdAt} status={data.status} />
+        <CardOrder billCode={data.codeBill} Time={data.createdAt} status={data.status} Complete={data.Complete} />
       </div>
     );
   });

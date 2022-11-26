@@ -51,7 +51,7 @@ const NewOrder = () => {
           NextPage(data.codeBill, data._id);
         }}
       >
-        <CardOrder billCode={data.codeBill} Time={data.createdAt} />
+        <CardOrder billCode={data.codeBill} Time={data.createdAt} Complete={data.Complete} />
       </div>
     );
   });

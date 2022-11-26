@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './ClientBill.module.scss';
 //input localhost file
 import axios from 'axios';
-import { apiUrl, cookieValue } from '../../../contexts/contexts';
+import { apiUrl, cookieValue, numberFormat } from '../../../contexts/contexts';
 import { useEffect, useState } from 'react';
 import Header from '../../../components/Client/Header/Header';
 import moment from 'moment';
@@ -56,7 +56,6 @@ const ClientBill = () => {
     );
   });
   //=====================================
-
   return (
     <div>
       <Header />
@@ -77,6 +76,7 @@ const ClientBill = () => {
               {listMenu}
             </tbody>
           </table>
+          <h3>Thành giá: {numberFormat.format(Allbill.amount)}</h3>
         </div>
       </div>
     </div>

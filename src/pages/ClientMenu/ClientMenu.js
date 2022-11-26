@@ -150,6 +150,11 @@ const ClientMenu = () => {
     navigate('/client-bill-status/' + url[4] + '/' + dataTable.IDnumber);
   };
 
+  //thêm món
+  const NextPageAddFood = () => {
+    const url = window.location.href.split('/');
+    navigate('/client-add-food/' + url[4] + '/' + dataTable.IDnumber);
+  };
   //==============================================
   //rander ra ui
   //món mới
@@ -212,7 +217,9 @@ const ClientMenu = () => {
           <div className={cx('container-main')}>
             <div className={cx('container-tool')}>
               <h1>Menu</h1>
-              <button className={cx('btn')}>Thêm món</button>
+              <button className={cx('btn')} onClick={NextPageAddFood}>
+                Thêm món
+              </button>
               <button className={cx('btn')} onClick={NextPageBillStatus}>
                 Trạng thái đơn
               </button>
@@ -230,6 +237,7 @@ const ClientMenu = () => {
                 <option value="0">Tất Cả</option>
                 {selectCategory}
               </select>
+              <button className={cx('btn')}>Gọi nhân viên</button>
               <button onClick={NextPageCart} className={cx('btn')}>
                 Giỏ hàng
               </button>

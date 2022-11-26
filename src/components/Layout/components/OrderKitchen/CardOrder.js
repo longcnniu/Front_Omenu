@@ -19,12 +19,14 @@ const CardOrder = (props) => {
           <BiDish className={cx('icon')} />
           <h3 className={cx('text')}>{props.billCode}</h3>
           <h3 className={cx('text')}>Thời gian: {moment(props.Time).locale('vi').format('HH:mm')}</h3>
+          <h3 className={cx('text')}>{props.Complete === true ? 'Lên món' : 'Đang chế biến'}</h3>
         </div>
       ) : (
         <div className={cx('warrap')}>
           <BiDish className={cx('icon')} />
           <h3 className={cx('text')}>{props.billCode}</h3>
           <h3 className={cx('text')}>Thời gian: {moment(props.Time).locale('vi').format('HH:mm')}</h3>
+          <h3 className={cx('text')}>Chờ chế biến</h3>
         </div>
       )}
     </>
