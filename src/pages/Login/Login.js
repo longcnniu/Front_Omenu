@@ -111,20 +111,20 @@ function Login() {
       <div className={cx('container-logo')}>
         <img
           className={cx('logo')}
-          src="https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/logo.36f34a9f.svg"
+          src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7a3ec529632909.55fc107b84b8c.png"
           alt="logo"
         />
-        <h2>HRM</h2>
+        <h2>OMENU</h2>
       </div>
       <div className={cx('left')}>
         <img
-          src="https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/login-v2.72cd8a26.svg"
+          src="https://media.istockphoto.com/id/1316145932/photo/table-top-view-of-spicy-food.jpg?b=1&s=170667a&w=0&k=20&c=P3jIQq8gVqlXjd4kP2OrXYyzqEXSWCwwYtwrd81psDY="
           alt=""
         />
       </div>
       <div className={cx('right')}>
         <div className={cx('container-right')}>
-          <h2>Welcome to Vuexy! 👋</h2>
+          <h2>Welcome to OMENU! 👋</h2>
           <p>Please sign-in to your account and start the adventure</p>
           <div className={cx('container-input')}>
             <label>Email</label>

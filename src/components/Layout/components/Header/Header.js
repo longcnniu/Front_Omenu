@@ -11,6 +11,12 @@ const Header = () => {
     navigate('/');
   };
 
+  ////click logout
+  const logout = () => {
+    document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.location.reload();
+  };
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container1')}>
@@ -19,7 +25,9 @@ const Header = () => {
           <h3 className={cx('title')}>OMenu</h3>
         </div>
         {/* =================== */}
-        <div className={cx('container1-2')}>Đăng xuất</div>
+        <div className={cx('container1-2')} onClick={logout}>
+          Đăng xuất
+        </div>
       </div>
     </div>
   );

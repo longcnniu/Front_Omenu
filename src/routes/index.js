@@ -32,6 +32,8 @@ import ClientBill from '../pages/ClientMenu/ClientBill/ClientBill';
 import ClientBillStatus from '../pages/ClientMenu/ClientBillStatus/ClientBillStatus';
 import AddOrderClient from '../pages/ClientMenu/AddOrderClient/AddOrderClient';
 import CartAddClient from '../pages/ClientMenu/CartAddClient/CartAddClient';
+import Account from '../pages/Account/Account';
+import CreateAccount from '../pages/Account/CreateAccount/CreateAccount';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -75,6 +77,9 @@ const publicRoutes = [
   { path: '/order-for-service', component: ServiceMain },
   { path: '/detail-waiting/:id/:id', component: DetailService },
   { path: '/detail-serviced/:id/:id', component: DetailServed },
+  //==========================create account
+  { path: '/account', component: Account },
+  { path: '/create-account', component: CreateAccount },
 ];
 
 export { publicRoutes };
