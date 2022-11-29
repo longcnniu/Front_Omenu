@@ -35,7 +35,7 @@ const DetailTable = () => {
   useEffect(() => {
     const url = window.location.href.split('/');
     axios
-      .get(apiUrl + '/v1/create-detail-table/' + url[4], {})
+      .get(apiUrl + '/v1/get-detail-table/' + url[4], {})
       .then((res) => {
         setTableName(res.data.data.nameTable);
         setSectorID(res.data.data.IDnumberSector);

@@ -5,8 +5,6 @@ import CustomerOrder from './CustomerOrder/CustomerOrder';
 import MesOrder from './MesOrder/MesOrder';
 import HistoryOrder from './HistoryOrder/HistoryOrder';
 //
-
-//
 const cx = classNames.bind(styles);
 
 const OrderMain = () => {

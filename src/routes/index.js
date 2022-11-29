@@ -34,6 +34,7 @@ import AddOrderClient from '../pages/ClientMenu/AddOrderClient/AddOrderClient';
 import CartAddClient from '../pages/ClientMenu/CartAddClient/CartAddClient';
 import Account from '../pages/Account/Account';
 import CreateAccount from '../pages/Account/CreateAccount/CreateAccount';
+import Statistical from '../pages/Statistical/Statistical';
 
 const publicRoutes = [
   { path: '/login', component: Login, layout: null },
@@ -80,6 +81,8 @@ const publicRoutes = [
   //==========================create account
   { path: '/account', component: Account },
   { path: '/create-account', component: CreateAccount },
+  //==========================Statistical
+  { path: '/statistical', component: Statistical },
 ];
 
 export { publicRoutes };

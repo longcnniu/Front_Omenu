@@ -44,7 +44,7 @@ const Home = () => {
             <CardView name="QL đơn cho bếp" icon={BiFoodMenu} url="order-for-kitchen" />
             <CardView name="QL phục vụ" icon={AiOutlineBook} url="order-for-service" />
             <CardView name="QL tài khoản" icon={BsFillPersonFill} url="account" />
-            <CardView name="Thống kê" icon={AiOutlineException} url="order-for-service" />
+            <CardView name="Thống kê" icon={AiOutlineException} url="statistical" />
           </>
         )}
         {role === 'qa' && (
@@ -54,7 +54,7 @@ const Home = () => {
             <CardView name="QL Thực đơn" icon={BiFoodMenu} url="menu" />
             <CardView name="QL đơn cho bếp" icon={BiFoodMenu} url="order-for-kitchen" />
             <CardView name="QL phục vụ" icon={AiOutlineBook} url="order-for-service" />
-            <CardView name="Thống kê" icon={AiOutlineException} url="order-for-service" />
+            <CardView name="Thống kê" icon={AiOutlineException} url="statistical" />
           </>
         )}
         {role === 'staff' && (

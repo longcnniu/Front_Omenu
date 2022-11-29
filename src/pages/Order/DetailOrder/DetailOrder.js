@@ -15,6 +15,7 @@ const DetailOrder = () => {
   const [AllDataBill, setAllDataBill] = useState([]);
   const [dataFood, setdataFood] = useState([]);
   const [dataCount, setdataCount] = useState([]);
+  const [reload, setreload] = useState(true);
   //chuyên hướng
   // relaodtable
   let dataCart = [];
@@ -33,16 +34,16 @@ const DetailOrder = () => {
       draggable: true,
       progress: undefined,
     });
-  // const pupsuccess = (message) =>
-  //   toast.success(message, {
-  //     position: 'bottom-left',
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //   });
+  const pupsuccess = (message) =>
+    toast.success(message, {
+      position: 'bottom-left',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   //=====================================
   useEffect(() => {
     const url = window.location.href.split('/');
@@ -62,7 +63,7 @@ const DetailOrder = () => {
         setdataCount(res.data.data[0].OrderNumberIDFood);
       })
       .catch((error) => {});
-  }, []);
+  }, [reload]);
 
   //điếm số lượng sản phẩm trong giỏ
   let cartCountTotal;
@@ -71,6 +72,7 @@ const DetailOrder = () => {
   const AddFood = () => {
     navigate('/add-food/' + AllDataBill._id);
   };
+
   //sửa order
   const editOrder = () => {
     if (AllDataBill.status) {
@@ -79,10 +81,12 @@ const DetailOrder = () => {
       navigate('/edit-food/' + AllDataBill._id);
     }
   };
+
   //chuyển bàn
   const changeTable = () => {
     navigate('/change-table/' + AllDataBill.Table[0].IDnumber);
   };
+
   //hủy order
   const deleteOrder = () => {
     axios
@@ -99,6 +103,56 @@ const DetailOrder = () => {
         navigate('/order');
       })
       .catch((error) => {});
+  };
+
+  //thanh toán
+  const payment = () => {
+    axios
+      .post(
+        apiUrl + '/v1/payment-order',
+        {
+          ID: AllDataBill._id,
+        },
+        {
+          headers: {
+            token: cookieValue(),
+          },
+        },
+      )
+      .then((res) => {
+        pupsuccess(res.data.message);
+        setreload(!reload);
+      })
+      .catch((error) => {});
+  };
+
+  //khách hàng đã xong
+  const done = () => {
+    axios
+      .post(
+        apiUrl + '/v1/done',
+        {
+          ID: AllDataBill._id,
+          tableNumberID: AllDataBill.tableNumberID,
+        },
+        {
+          headers: {
+            token: cookieValue(),
+          },
+        },
+      )
+      .then((res) => {
+        pupsuccess(res.data.message);
+        function NextPage() {
+          navigate('/order');
+          clearTimeout(NextPage);
+        }
+        setTimeout(NextPage, 2000);
+      })
+      .catch((error) => {
+        // console.log(error.response.data.message);
+        pupwarn(error.response.data.message);
+      });
   };
   //=====================================
   // rander ui
@@ -177,8 +231,16 @@ const DetailOrder = () => {
             <button className={cx('btn-delete')} onClick={deleteOrder}>
               Hủy order
             </button>
-            <button className={cx('btn')}>In hóa đơn</button>
-            <button className={cx('btn')}>Thanh toán</button>
+            <button className={cx('btn')} onClick={done}>
+              Khách đã xong
+            </button>
+            {AllDataBill.payment !== true ? (
+              <button className={cx('btn')} onClick={payment}>
+                Thanh toán
+              </button>
+            ) : (
+              ''
+            )}
           </div>
         </>
       ) : (

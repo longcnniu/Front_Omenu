@@ -198,8 +198,6 @@ const Cart = () => {
             <button className={cx('btn-delete')} onClick={deleteAll}>
               Xóa tất cả
             </button>
-            <button className={cx('btn')}>In hóa đơn</button>
-            <button className={cx('btn')}>Thanh toán</button>
             <button className={cx('btn')} onClick={createOrder}>
               Xác nhận order
             </button>
